@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/dataTablesBB.css">
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script src="javascript/underscore/underscore-min.js"></script>
+	<script src="js/backbone/backbone-min.js"></script>
+</head>
+<body>
+	<table id="table-request" class="data-table-bb">
+        <thead>
+            <th>Select</th>
+            <th class="to-order to-filter"><span>First Name</span></th>
+            <th class="to-order to-filter"><span>Last Name</span></th>
+            <th class="to-order to-filter"><span>DOB</span></th>
+            <th class="to-order to-filter"><span>Modality</span></th>
+            <th class="to-order to-filter"><span>Body<br/> Part</span></th>
+            <th class="to-order to-filter"><span>Study Date</span></th>
+            <th class="to-order to-filter"><span>Image #</span></th>
+            <th class="to-order to-filter"><span>Series #</span></th>
+            <th class="to-order to-filter"><span>Source<br/> Hospital</span></th>
+            <th>More<br/> Info</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="align-center" style="width:34px">
+                    <input type="checkbox" class="checkbox" name="check1" value="1" />
+                </td>
+                <td class="align-center" style="width:65px">Garry</td>
+                <td class="align-center" style="width:65px">Trout</td>
+                <td>04/03/1970</td>
+                <td>CT</td>
+                <td>Head</td>
+                <td>05/21/2010</td>
+                <td>####</td>
+                <td>####</td>
+                <td style="width:46px">Example</td>
+                <td class="align-center">
+                    <span class="icon-small info"></span>
+                </td>
+            </tr>
+            <tr class="row-drop">
+                <td colspan="11">
+                    <div>
+                        <table>
+                            <tr>
+                                <td>
+                                    <p class="align-center color-blue bold margin-bottom-20">Patient Info:</p>
+                                   <p><span class="rtl-label">Pt.Name:</span> John, Doe</p>
+                                   <p><span class="rtl-label">DOB:</span> 2/16/1946</p>
+                                   <p><span class="rtl-label">Age:</span> 68</p>
+                                   <p><span class="rtl-label">Gender:</span> Male</p>
+                                   <p><span class="rtl-label">MRN:</span> 899665</p>
+                                   <p><span class="rtl-label">MVH MRN:</span> 54879665</p>
+                                </td>
+                                <td>
+                                    <p class="align-center color-blue bold margin-bottom-20">Exam Info:</p>
+                                    <p><span class="rtl-label">Modality:</span> CT</p>
+                                   <p><span class="rtl-label">Body Part:</span> CT Had W/WWO Cont...</p>
+                                   <p><span class="rtl-label">Study Date:</span> 9/29/2013</p>
+                                   <p><span class="rtl-label">Images#:</span> 879</p>
+                                   <p><span class="rtl-label">Series#:</span> 12</p>
+                                   <p><span class="rtl-label">Origin:</span> St. Joseph Hospital</p>
+                                   <p><span class="rtl-label">Accession#:</span> 12584968</p>
+                                   <p><span class="rtl-label">MVH Accession#:</span> 170896542</p>
+                                </td>
+                                <td>
+                                    <p class="align-center color-blue bold margin-bottom-20">PaperPlanes History:</p>
+                                    <p><span class="rtl-label">Send to PACS:</span> 3/13/2014 - 9:20AM</p>
+                                    <p class="margin-bottom-10"><span class="rtl-label"></span> Scott James</p>
+                                    <p><span class="rtl-label">Shared With:</span> 3/13/2014 - 9:18AM</p>
+                                    <p class="margin-bottom-10"><span class="rtl-label"></span> Scott James</p>
+                                    <p><span class="rtl-label">Imported in</span> 3/13/2014 - 9:15AM</p>
+                                    <p class="margin-bottom-10"><span class="rtl-label">PaperPlanes:</span> Scott James</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="align-center">
+                    <input type="checkbox" class="checkbox" name="check3" value="1" />
+                </td>
+                <td class="align-center">John</td>
+                <td class="align-center">Doe</td>
+                <td>02/02/1956</td>
+                <td>CT</td>
+                <td>Head</td>
+                <td>06/06/2013</td>
+                <td>####</td>
+                <td>####</td>
+                <td>Example</td>
+                <td class="align-center">
+                    <span class="icon-small info"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="align-center">
+                    <input type="checkbox" class="checkbox" name="check5" value="1" />
+                </td>
+                <td class="align-center">Lawrence</td>
+                <td class="align-center">Strada</td>
+                <td>10/11/1971</td>
+                <td>CT</td>
+                <td>Head</td>
+                <td>01/31/2013</td>
+                <td>####</td>
+                <td>####</td>
+                <td>Example</td>
+                <td class="align-center">
+                    <span class="icon-small info"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="align-center">
+                    <input type="checkbox" class="checkbox" name="check7" value="1"  />
+                </td>
+                <td class="align-center">John</td>
+                <td class="align-center">Doe</td>
+                <td>mm/dd/yyyy</td>
+                <td>CT</td>
+                <td>Head</td>
+                <td>mm/dd/yyyy</td>
+                <td>####</td>
+                <td>####</td>
+                <td>Example</td>
+                <td class="align-center">
+                    <span class="icon-small info"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
