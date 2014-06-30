@@ -462,3 +462,27 @@ table.data-table-bb.external-elements thead > tr:before {
 .white-block + .data-table-bb {
   margin-top: -20px;
 }
+
+.checkbox + .label,
+.radio + .label {
+  position: relative;
+  top: -2px;
+  left: 3px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+span.checkbox {
+  display: inline-block;
+  background: #fff;
+  border: 1px solid #737373;
+  cursor: pointer;
+  width: 13px;
+  height: 13px;
+}
+span.checkbox:hover {
+  background: #f2f2f2;
+}
+span.checkbox.checked {
+  background: #ffffff url('../img/checkmark-small.png') no-repeat center center;
+}
