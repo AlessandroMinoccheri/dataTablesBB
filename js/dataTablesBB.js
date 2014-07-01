@@ -103,7 +103,7 @@
     });
 
     var DataView = Backbone.View.extend({ 
-        template: _.template($("#line-table").html()),
+        //template: _.template($("#line-table").html()),
         initialize: function(){
             var here = this;
             this.data_table = new DataCollection();
@@ -195,20 +195,20 @@
                                     var margin = -10;
                                     var opacity_asc = 1;
                                     var opacity_desc = 1;
-                                    var asc_img = 'images/sort_asc_disabled.png';
-                                    var desc_img = 'images/sort_desc_disabled.png';
+                                    var asc_img = 'img/sort_asc_disabled.png';
+                                    var desc_img = 'img/sort_desc_disabled.png';
 
                                     if(($(this).html().indexOf('<br />') >= 0) || ($(this).html().indexOf('<br>') >= 0) || ($(this).html().indexOf('<br/>') >= 0))
                                         margin = 0;
 
                                     if((here.order == index2) && (here.order_by == 'asc')){
-                                        asc_img = 'images/sort_asc.png';
+                                        asc_img = 'img/sort_asc.png';
                                         opacity_desc = 0;
                                         console.log('g');
                                     }
 
                                     if((here.order == index2) && (here.order_by == 'desc')){
-                                        desc_img = 'images/sort_desc.png';
+                                        desc_img = 'img/sort_desc.png';
                                         opacity_asc = 0;
                                         console.log('h');
                                     }
@@ -222,20 +222,20 @@
                                     var margin = -10;
                                     var opacity_asc = 1;
                                     var opacity_desc = 1;
-                                    var asc_img = 'images/sort_asc_disabled.png';
-                                    var desc_img = 'images/sort_desc_disabled.png';
+                                    var asc_img = 'img/sort_asc_disabled.png';
+                                    var desc_img = 'img/sort_desc_disabled.png';
 
                                     if(($(this).html().indexOf('<br />') >= 0) || ($(this).html().indexOf('<br>') >= 0) || ($(this).html().indexOf('<br/>') >= 0))
                                         margin = 0;
 
                                     if((here.order == index2) && (here.order_by == 'asc')){
-                                        asc_img = 'images/sort_asc.png';
+                                        asc_img = 'img/sort_asc.png';
                                         opacity_desc = 0;
                                     }
 
                                     console.log(here.order + ' - ' + index2 + ' - ' + here.order_by);
                                     if((here.order == index2) && (here.order_by == 'desc')){
-                                        desc_img = 'images/sort_desc.png';
+                                        desc_img = 'img/sort_desc.png';
                                         opacity_asc = 0;
                                     }
 
@@ -418,19 +418,19 @@
                                 var margin = -10;
                                 var opacity_asc = 1;
                                 var opacity_desc = 1;
-                                var asc_img = 'images/sort_asc_disabled.png';
-                                var desc_img = 'images/sort_desc_disabled.png';
+                                var asc_img = 'img/sort_asc_disabled.png';
+                                var desc_img = 'img/sort_desc_disabled.png';
 
                                 if(($(this).html().indexOf('<br />') >= 0) || ($(this).html().indexOf('<br>') >= 0) || ($(this).html().indexOf('<br/>') >= 0))
                                     margin = 0;
 
                                 if((here.order == index2) && (here.order_by == 'asc')){
-                                    asc_img = 'images/sort_asc.png';
+                                    asc_img = 'img/sort_asc.png';
                                     opacity_desc = 0;
                                 }
 
                                 if((here.order == index2) && (here.order_by == 'desc')){
-                                    desc_img = 'images/sort_desc.png';
+                                    desc_img = 'img/sort_desc.png';
                                     opacity_asc = 0;
                                 }
 
@@ -446,19 +446,19 @@
                                 var margin = -10;
                                 var opacity_asc = 1;
                                 var opacity_desc = 1;
-                                var asc_img = 'images/sort_asc_disabled.png';
-                                var desc_img = 'images/sort_desc_disabled.png';
+                                var asc_img = 'img/sort_asc_disabled.png';
+                                var desc_img = 'img/sort_desc_disabled.png';
 
                                 if(($(this).html().indexOf('<br />') >= 0) || ($(this).html().indexOf('<br>') >= 0) || ($(this).html().indexOf('<br/>') >= 0))
                                     margin = 0;
 
                                 if((here.order == index2) && (here.order_by == 'asc')){
-                                    asc_img = 'images/sort_asc.png';
+                                    asc_img = 'img/sort_asc.png';
                                     opacity_desc = 0;
                                 }
 
                                 if((here.order == index2) && (here.order_by == 'desc')){
-                                    desc_img = 'images/sort_desc.png';
+                                    desc_img = 'img/sort_desc.png';
                                     opacity_asc = 0;
                                 }
 
@@ -480,6 +480,8 @@
             var data_tip_send = '';
             var style_send = '';
             var class_send = '';
+
+            console.log('here');
 
             $.when(
                 _.each(here.data_table.models, function(t, index_t) {
@@ -503,9 +505,10 @@
                         count_elements++;
                         actual_el++;
                         if((actual_el < (parseInt(start) + parseInt(max))) && (actual_el >= start)){
+                            console.log('TTT');
                             $.get('js/template.html', function (data) {
                                 template = _.template(data, {data: t, class_td: class_send, data_tip: data_tip_send, style_td: style_send});//Option to pass any dynamic values to template
-                                that.$el.html(template);//adding the template content to the main template.
+                                $(here.el).find("tbody").append(template);
                             }, 'html');
                             //$(here.el).find("tbody").append(here.template({data: t, class_td: class_send, data_tip: data_tip_send, style_td: style_send}));
                         }
