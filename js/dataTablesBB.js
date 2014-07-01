@@ -481,8 +481,6 @@
             var style_send = '';
             var class_send = '';
 
-            console.log('here');
-
             $.when(
                 _.each(here.data_table.models, function(t, index_t) {
                     if(t.attributes.show == '1'){
@@ -505,49 +503,62 @@
                         count_elements++;
                         actual_el++;
                         if((actual_el < (parseInt(start) + parseInt(max))) && (actual_el >= start)){
-                            console.log('TTT');
                             $.get('js/template.html', function (data) {
                                 template = _.template(data, {data: t, class_td: class_send, data_tip: data_tip_send, style_td: style_send});//Option to pass any dynamic values to template
                                 $(here.el).find("tbody").append(template);
                             }, 'html');
-                            //$(here.el).find("tbody").append(here.template({data: t, class_td: class_send, data_tip: data_tip_send, style_td: style_send}));
                         }
                     }
                 })
             ).then(function() {
-                _.each(here.info.models, function(t, index_t) {
-                    $(document).find(here.el).find('#row-' + t.attributes.data_id).after('<tr class="row-drop" id="row-more-' + t.attributes.data_id + '" style="display:none;">' + t.attributes.html + '</tr>');
-                });
-
-                if($(here.el).parent().find('.paginate_button').length <= 2){
-                    var number_pages = Math.ceil(parseInt(count_elements) / parseInt(here.max));
-                    here.max_page = number_pages;
-                    for (var i = number_pages; i > 0; i--){
-                        if(here.actual_page == i){
-                            $(here.el).parent().find('.table-request_previous').after('<span><a class="paginate_button current" aria-controls="table-request" data-dt-idx="' + i + '" tabindex="0">' + i + '</a></span>');
-                        }
-                        else{
-                            $(here.el).parent().find('.table-request_previous').after('<span><a class="paginate_button" aria-controls="table-request" data-dt-idx="' + i + '" tabindex="0">' + i + '</a></span>');
+                $.when(
+                    _.each(here.info.models, function(t, index_t) {
+                        $(document).find(here.el).find('#row-' + t.attributes.data_id).after('<tr class="row-drop" id="row-more-' + t.attributes.data_id + '" style="display:none;">' + t.attributes.html + '</tr>');
+                    })
+                ).then(function() {
+                    if($(here.el).parent().find('.paginate_button').length <= 2){
+                        var number_pages = Math.ceil(parseInt(count_elements) / parseInt(here.max));
+                        here.max_page = number_pages;
+                        for (var i = number_pages; i > 0; i--){
+                            if(here.actual_page == i){
+                                $(here.el).parent().find('.table-request_previous').after('<span><a class="paginate_button current" aria-controls="table-request" data-dt-idx="' + i + '" tabindex="0">' + i + '</a></span>');
+                            }
+                            else{
+                                $(here.el).parent().find('.table-request_previous').after('<span><a class="paginate_button" aria-controls="table-request" data-dt-idx="' + i + '" tabindex="0">' + i + '</a></span>');
+                            }
                         }
                     }
-                }
-                else{
-                    $(here.el).parent().find('.paginate_button').each(function(index){
-                        $(this).removeClass('current');
+                    else{
+                        $(here.el).parent().find('.paginate_button').each(function(index){
+                            $(this).removeClass('current');
 
-                        if(here.actual_page == index){
-                            $(this).addClass('current');
-                        }
+                            if(here.actual_page == index){
+                                $(this).addClass('current');
+                            }
+                        });
+                    }
+                    
+                    var index_start = (parseInt(start) + 1);
+                    var index_end_page = (parseInt(start) + parseInt(max));
+
+                    if(parseInt(index_end_page) > parseInt(count_elements))
+                        index_end_page = count_elements;
+
+                    $(here.el).parent().find('.table-request_info').html('Showing ' + index_start + ' to ' + index_end_page + ' of ' + count_elements + ' entries');
+                
+                    //console.log($(here.el).find('input[type="checkbox"]').length);
+                    console.log($(here.el).html());
+                    $(document).find(here.el).find('input[type="checkbox"].checkbox').each(function(i){
+                        console.log('ttttttttt');
+                        if(!$(this).hasClass('checked') && $(this).attr('checked'))
+                            $(this).addClass('checked');
+
+                        $(this).addClass('hidden').before('<span class="' + $(this).attr('class') + '" data-name="' + $(this).attr('name') + '" data-value="' + $(this).attr('value') + '"></span>');
+
+                        if($(this).hasClass('checked') && ! $(this).attr('checked'))
+                            $(this).attr('checked', true);
                     });
-                }
-
-                var index_start = (parseInt(start) + 1);
-                var index_end_page = (parseInt(start) + parseInt(max));
-
-                if(parseInt(index_end_page) > parseInt(count_elements))
-                    index_end_page = count_elements;
-
-                $(here.el).parent().find('.table-request_info').html('Showing ' + index_start + ' to ' + index_end_page + ' of ' + count_elements + ' entries');
+                });
             });
         }
     });
