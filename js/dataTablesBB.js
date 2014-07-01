@@ -548,7 +548,7 @@
                 
                     //console.log($(here.el).find('input[type="checkbox"]').length);
                     console.log($(here.el).html());
-                    $(document).find(here.el).find('input[type="checkbox"].checkbox').each(function(i){
+                    $(document).find('input[type="checkbox"].checkbox').each(function(i){
                         console.log('ttttttttt');
                         if(!$(this).hasClass('checked') && $(this).attr('checked'))
                             $(this).addClass('checked');
