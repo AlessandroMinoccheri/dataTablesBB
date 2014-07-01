@@ -1,0 +1,26 @@
+<tr id="row-<%= data.attributes.id %>">
+    <%
+    _.each(data.attributes, function(t, index_t) {
+        if((index_t != 'show') && (index_t != 'id')){
+            if(data_tip.attributes != undefined)
+                tip = data_tip.attributes[index_t];
+            else
+                tip = '';
+
+            if(style_td.attributes != undefined)
+                style = style_td.attributes[index_t];
+            else
+                style = '';
+
+            if(class_td.attributes != undefined)
+                class_print = class_td.attributes[index_t];
+            else
+                class_print = '';
+
+            %>
+            <td class="<%= class_print %>" data-tip="<%= tip %>" style="<%= style %>"><%= t %></td>
+            <%
+        }
+    });
+    %> 
+</tr>
