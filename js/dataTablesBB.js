@@ -506,6 +506,21 @@
                             $.get('js/template.html', function (data) {
                                 template = _.template(data, {data: t, class_td: class_send, data_tip: data_tip_send, style_td: style_send});//Option to pass any dynamic values to template
                                 $(here.el).find("tbody").append(template);
+
+                                $(here.el).find('input[type="checkbox"].checkbox').each(function(i){
+                                    if($(this).hasClass('hidden')){
+
+                                    }
+                                    else{
+                                        if(!$(this).hasClass('checked') && $(this).attr('checked'))
+                                            $(this).addClass('checked');
+
+                                        $(this).addClass('hidden').before('<span class="' + $(this).attr('class') + '" data-name="' + $(this).attr('name') + '" data-value="' + $(this).attr('value') + '"></span>');
+
+                                        if($(this).hasClass('checked') && ! $(this).attr('checked'))
+                                            $(this).attr('checked', true);
+                                    }
+                                });
                             }, 'html');
                         }
                     }
@@ -548,7 +563,7 @@
                 
                     //console.log($(here.el).find('input[type="checkbox"]').length);
                     //console.log($(document).find(here.el).find('input[type="checkbox"].checkbox').length);
-                    console.log($(document).find(here.el).html());
+                    //console.log($(document).find(here.el).html());
                     $(document).find('input[type="checkbox"].checkbox').each(function(i){
                         console.log('ttttttttt');
                         if(!$(this).hasClass('checked') && $(this).attr('checked'))
