@@ -547,7 +547,8 @@
                     $(here.el).parent().find('.table-request_info').html('Showing ' + index_start + ' to ' + index_end_page + ' of ' + count_elements + ' entries');
                 
                     //console.log($(here.el).find('input[type="checkbox"]').length);
-                    console.log($(here.el).html());
+                    //console.log($(document).find(here.el).find('input[type="checkbox"].checkbox').length);
+                    console.log($(document).find(here.el).html());
                     $(document).find('input[type="checkbox"].checkbox').each(function(i){
                         console.log('ttttttttt');
                         if(!$(this).hasClass('checked') && $(this).attr('checked'))
