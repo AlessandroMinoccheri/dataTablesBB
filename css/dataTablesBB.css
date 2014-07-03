@@ -1,3 +1,6 @@
+.hidden {
+  display: none;
+}
 .data-table-bb {
   width: 100%;
   margin: 0 auto;

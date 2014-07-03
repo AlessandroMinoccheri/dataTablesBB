@@ -330,18 +330,18 @@
                 }
             });
 
-            // $(document).on('click', '#table-request .checkbox', function(){
-            //     if($(this).hasClass('checked')){
-            //         $(this).removeClass('checked');
-            //         $(this).closest('td').find('input').removeAttr('checked');
-            //         $(this).closest('tr').removeClass('selected');
-            //     }
-            //     else{
-            //         $(this).closest('td').find('input').attr('checked', 'checked');
-            //         $(this).addClass('checked');
-            //         $(this).closest('tr').addClass('selected');
-            //     }
-            // });
+            $(here.el).on('click', '.checkbox', function(){
+                if($(this).hasClass('checked')){
+                    $(this).removeClass('checked');
+                    $(this).closest('td').find('input').removeAttr('checked');
+                    $(this).closest('tr').removeClass('selected');
+                }
+                else{
+                    $(this).closest('td').find('input').attr('checked', 'checked');
+                    $(this).addClass('checked');
+                    $(this).closest('tr').addClass('selected');
+                }
+            });
 
             $(here.el).on('click', '.info', function(){
                 $(document).find(here.el).find('tr').removeClass('open');
