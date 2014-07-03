@@ -126,7 +126,7 @@
 
             var count = 0;
             $.when(
-                $(here.el).find('tr').each(function(index){
+                $(here.el).find('tr').each(function(){
                     if(($(this).closest('table').find('thead').length <= 0) || ($(this).hasClass('row-drop'))){
                         if($(this).find('td').length > 0){
                             var element = [];
@@ -323,8 +323,8 @@
                         }
                     }
                     else{
-                        var new_page_change = $(this).html();
-                        here.actual_page = new_page_change;
+                        var new_page_change2 = $(this).html();
+                        here.actual_page = new_page_change2;
                         here.render();
                     }   
                 }
@@ -393,7 +393,7 @@
             var here = this;
             var option_max = '';
             for (var j = 5; j<=100; j+=5){
-                if(j == here.max){
+                if(j === here.max){
                     option_max += '<option value="' + j + '" selected="selected">' + j + '</option>';
                 }
                 else{
@@ -504,21 +504,21 @@
             var class_send = '';
 
             $.when(
-                _.each(here.data_table.models, function(t, index_t) {
+                _.each(here.data_table.models, function(t) {
                     if(t.attributes.show === '1'){
-                        _.each(here.data_tip.models, function(t2, index_t2) {
+                        _.each(here.data_tip.models, function(t2) {
                             if(t2.attributes.data_id === t.attributes.id){
                                 data_tip_send = t2;
                             }
                         });
 
-                        _.each(here.style_td.models, function(t2, index_t2) {
+                        _.each(here.style_td.models, function(t2) {
                             if(t2.attributes.data_id === t.attributes.id){
                                 style_send = t2;
                             }
                         });
 
-                        _.each(here.class_table.models, function(t2, index_t2) {
+                        _.each(here.class_table.models, function(t2) {
                             if(t2.attributes.data_id === t.attributes.id){
                                 class_send = t2;
                             }
@@ -553,7 +553,7 @@
                 })
             ).then(function() {
                 $.when(
-                    _.each(here.info.models, function(t, index_t) {
+                    _.each(here.info.models, function(t) {
                         $(document).find(here.el).find('#row-' + t.attributes.data_id).after('<tr class="row-drop" id="row-more-' + t.attributes.data_id + '" style="display:none;">' + t.attributes.html + '</tr>');
                     })
                 ).then(function() {
@@ -588,11 +588,7 @@
 
                     $(here.el).parent().find('.table-request_info').html('Showing ' + index_start + ' to ' + index_end_page + ' of ' + count_elements + ' entries');
                 
-                    //console.log($(here.el).find('input[type="checkbox"]').length);
-                    //console.log($(document).find(here.el).find('input[type="checkbox"].checkbox').length);
-                    //console.log($(document).find(here.el).html());
-                    $(document).find('input[type="checkbox"].checkbox').each(function(i){
-                        console.log('ttttttttt');
+                    $(document).find('input[type="checkbox"].checkbox').each(function(){
                         if(!$(this).hasClass('checked') && $(this).attr('checked')){
                             $(this).addClass('checked');
                         }
