@@ -1,5 +1,5 @@
-    InfoModel = Backbone.Model.extend();
-    InfoCollection = Backbone.Collection.extend({ 
+    var InfoModel = Backbone.Model.extend();
+    var InfoCollection = Backbone.Collection.extend({ 
         model: InfoModel,
         addInfo: function(elements, options) {
             return this.add(elements, options);
@@ -9,8 +9,8 @@
         }
     });
 
-    StyleModel = Backbone.Model.extend();
-    StyleCollection = Backbone.Collection.extend({ 
+    var StyleModel = Backbone.Model.extend();
+    var StyleCollection = Backbone.Collection.extend({ 
         model: StyleModel,
         addStyle: function(elements, options) {
             return this.add(elements, options);
@@ -20,8 +20,8 @@
         }
     });
 
-    DataTipModel = Backbone.Model.extend();
-    DataTipCollection = Backbone.Collection.extend({ 
+    var DataTipModel = Backbone.Model.extend();
+    var DataTipCollection = Backbone.Collection.extend({ 
         model: DataTipModel,
         addDataTip: function(elements, options) {
             return this.add(elements, options);
@@ -31,8 +31,8 @@
         }
     });
 
-    ClassModel = Backbone.Model.extend();
-    ClassCollection = Backbone.Collection.extend({ 
+    var ClassModel = Backbone.Model.extend();
+    var ClassCollection = Backbone.Collection.extend({ 
         model: ClassModel,
         addClass: function(elements, options) {
             return this.add(elements, options);
@@ -42,8 +42,8 @@
         }
     });
 
-    DataModel = Backbone.Model.extend();
-    DataCollection = Backbone.Collection.extend({ 
+    var DataModel = Backbone.Model.extend();
+    var DataCollection = Backbone.Collection.extend({ 
         model: DataModel,
         sort_key: '2', // default sort key
         sort_order: 'asc', // default sort key
@@ -107,8 +107,7 @@
         }
     });
 
-    var DataView = Backbone.View.extend({ 
-        //template: _.template($("#line-table").html()),
+    var DataTableView = Backbone.View.extend({ 
         initialize: function(){
             var here = this;
             this.data_table = new DataCollection();
@@ -533,7 +532,7 @@
 
                                 $(here.el).find('input[type="checkbox"].checkbox').each(function(i){
                                     if($(this).hasClass('hidden')){
-
+                                        console.log('hidden');
                                     }
                                     else{
                                         if(!$(this).hasClass('checked') && $(this).attr('checked')){
