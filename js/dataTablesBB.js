@@ -65,7 +65,7 @@
             if(typeof item.get(this.sort_key) === 'string') {
                 var check = item.get(this.sort_key).split('/');
                 var check2 = item.get(this.sort_key).split('-');
-                if((check.length === '3') || (check2.length === '3')){
+                if((parseInt(check.length) === '3') || (parseInt(check2.length) === '3')){
                     var date = new Date(item.get(this.sort_key));
                     if(this.sort_order === 'asc'){
                         return date.getTime();
@@ -84,7 +84,7 @@
                         for(var i=0, len=title.length; i<len; i+=1) {
                             index = alphabet.indexOf(title.charAt(i));
                          
-                            if(index === -1) {
+                            if(parseInt(index) === -1) {
                                 inverse_title += title.charAt(i);
                                 continue;
                             }
@@ -194,7 +194,7 @@
 
                 $(document).find(here.el).find('.order-arrow').remove();
                 $(document).find(here.el).find('tr').each(function(index){
-                    if(index === 1){
+                    if(parseInt(index) === 1){
                         if($(this).find('.order-by').length <= 0){
                             $(this).find('td').each(function(index2){
                                 if($(this).hasClass('to-order')){
@@ -208,13 +208,13 @@
                                         margin = 0;
                                     }
 
-                                    if((here.order === index2) && (here.order_by === 'asc')){
+                                    if((parseInt(here.order) === parseInt(index2)) && (here.order_by === 'asc')){
                                         asc_img = 'img/sort_asc.png';
                                         opacity_desc = 0;
                                         console.log('g');
                                     }
 
-                                    if((here.order === index2) && (here.order_by === 'desc')){
+                                    if((parseInt(here.order) === parseInt(index2)) && (here.order_by === 'desc')){
                                         desc_img = 'img/sort_desc.png';
                                         opacity_asc = 0;
                                         console.log('h');
@@ -236,13 +236,12 @@
                                         margin = 0;
                                     }
 
-                                    if((here.order === index2) && (here.order_by === 'asc')){
+                                    if((parseInt(here.order) === parseInt(index2)) && (here.order_by === 'asc')){
                                         asc_img = 'img/sort_asc.png';
                                         opacity_desc = 0;
                                     }
 
-                                    console.log(here.order + ' - ' + index2 + ' - ' + here.order_by);
-                                    if((here.order === index2) && (here.order_by === 'desc')){
+                                    if((parseInt(here.order) === parseInt(index2)) && (here.order_by === 'desc')){
                                         desc_img = 'img/sort_desc.png';
                                         opacity_asc = 0;
                                     }
@@ -267,12 +266,12 @@
                         var to_filter = 0;
                         _.each(data.attributes, function(d, index_d) {
                             _.each(here.filterColumn, function(filter) {
-                                if (filter === index_d){
+                                if (parseInt(filter) === parseInt(index_d)){
                                     to_filter = 1;
                                 }
                             });
 
-                            if(to_filter === 1){
+                            if(parseInt(to_filter) === 1){
                                 if((index_t !== 'id') && (index_t !== 'show')){
                                     var text = d.toString().toLowerCase();
                                     
@@ -290,7 +289,7 @@
 
                             if(text.indexOf(searched_text.toLowerCase()) >= 0){
                                 _.each(here.data_table.models, function(data2) {
-                                    if(data2.attributes.id === data.attributes.data_id){
+                                    if(parseInt(data2.attributes.id) === parseInt(data.attributes.data_id)){
                                         data2.set('show', '1');
                                     }
                                 });
@@ -370,7 +369,7 @@
             $(here.el).on('click', '.remove-el', function(){
                 var id = $(this).closest('tr').attr('id').substr(4);
                 _.each(here.data_table.models, function(data) {
-                    if(data.attributes.id === id){
+                    if(parseInt(data.attributes.id) === parseInt(id)){
                         here.data_table.removeConfiguration(data);
                         here.emptyPagination();
                         here.render();
@@ -392,7 +391,7 @@
             var here = this;
             var option_max = '';
             for (var j = 5; j<=100; j+=5){
-                if(j === here.max){
+                if(parseInt(j) === parseInt(here.max)){
                     option_max += '<option value="' + j + '" selected="selected">' + j + '</option>';
                 }
                 else{
@@ -442,12 +441,12 @@
                                     margin = 0;
                                 }
 
-                                if((here.order === index2) && (here.order_by === 'asc')){
+                                if((parseInt(here.order) === parseInt(index2)) && (here.order_by === 'asc')){
                                     asc_img = 'img/sort_asc.png';
                                     opacity_desc = 0;
                                 }
 
-                                if((here.order === index2) && (here.order_by === 'desc')){
+                                if((parseInt(here.order) === parseInt(index2)) && (here.order_by === 'desc')){
                                     desc_img = 'img/sort_desc.png';
                                     opacity_asc = 0;
                                 }
@@ -468,16 +467,18 @@
                                 var asc_img = 'img/sort_asc_disabled.png';
                                 var desc_img = 'img/sort_desc_disabled.png';
 
+                                console.log(here.order_by + ' - ' + here.order + ' - ' + index2);
+
                                 if(($(this).html().indexOf('<br />') >= 0) || ($(this).html().indexOf('<br>') >= 0) || ($(this).html().indexOf('<br/>') >= 0)){
                                     margin = 0;
                                 }
 
-                                if((here.order === index2) && (here.order_by === 'asc')){
+                                if((parseInt(here.order) === parseInt(index2)) && (here.order_by === 'asc')){
                                     asc_img = 'img/sort_asc.png';
                                     opacity_desc = 0;
                                 }
 
-                                if((here.order === index2) && (here.order_by === 'desc')){
+                                if((parseInt(here.order) === parseInt(index2)) && (here.order_by === 'desc')){
                                     desc_img = 'img/sort_desc.png';
                                     opacity_asc = 0;
                                 }
@@ -506,19 +507,19 @@
                 _.each(here.data_table.models, function(t) {
                     if(t.attributes.show === '1'){
                         _.each(here.data_tip.models, function(t2) {
-                            if(t2.attributes.data_id === t.attributes.id){
+                            if(parseInt(t2.attributes.data_id) === parseInt(t.attributes.id)){
                                 data_tip_send = t2;
                             }
                         });
 
                         _.each(here.style_td.models, function(t2) {
-                            if(t2.attributes.data_id === t.attributes.id){
+                            if(parseInt(t2.attributes.data_id) === parseInt(t.attributes.id)){
                                 style_send = t2;
                             }
                         });
 
                         _.each(here.class_table.models, function(t2) {
-                            if(t2.attributes.data_id === t.attributes.id){
+                            if(parseInt(t2.attributes.data_id) === parseInt(t.attributes.id)){
                                 class_send = t2;
                             }
                         });
@@ -560,7 +561,7 @@
                         var number_pages = Math.ceil(parseInt(count_elements) / parseInt(here.max));
                         here.max_page = number_pages;
                         for (var i = number_pages; i > 0; i-=1){
-                            if(here.actual_page === i){
+                            if(parseInt(here.actual_page) === i){
                                 $(here.el).parent().find('.table-request_previous').after('<span><a class="paginate_button current" aria-controls="table-request" data-dt-idx="' + i + '" tabindex="0">' + i + '</a></span>');
                             }
                             else{
@@ -572,7 +573,7 @@
                         $(here.el).parent().find('.paginate_button').each(function(index){
                             $(this).removeClass('current');
 
-                            if(here.actual_page === index){
+                            if(parseInt(here.actual_page) === index){
                                 $(this).addClass('current');
                             }
                         });
