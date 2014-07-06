@@ -54,8 +54,6 @@
             return this.remove(elements, options);
         },
         comparator: function (item) {
-            console.log(this.sort_order);
-            console.log(this.sort_key);
             if(!isNaN(parseFloat(item.get(this.sort_key))) && isFinite(item.get(this.sort_key))){
                 if(this.sort_order == 'asc'){
                     return parseFloat(item.get(this.sort_key));
@@ -83,8 +81,6 @@
                             inverse_title = '',
                             index;
 
-                        console.log(title);
-                         
                         for(var i=0, len=title.length; i<len; i+=1) {
                             index = alphabet.indexOf(title.charAt(i));
                          
@@ -392,6 +388,13 @@
         render: function(){
             var here = this;
             var option_max = '';
+
+            here.data_table.sortByField(here.order, here.order_by);
+
+            _.each(here.data_table.models, function(t) {
+                console.log(t);
+            });
+
             for (var j = 5; j<=100; j+=5){
                 if(j == here.max){
                     option_max += '<option value="' + j + '" selected="selected">' + j + '</option>';
@@ -504,8 +507,10 @@
             var style_send = '';
             var class_send = '';
 
+            console.log('----');
             $.when(
                 _.each(here.data_table.models, function(t) {
+                    console.log(t);
                     if(t.attributes.show == '1'){
                         _.each(here.data_tip.models, function(t2) {
                             if(t2.attributes.data_id == t.attributes.id){
@@ -534,7 +539,7 @@
 
                                 $(here.el).find('input[type="checkbox"].checkbox').each(function(i){
                                     if($(this).hasClass('hidden')){
-                                        console.log('hidden');
+                                        var test = '';
                                     }
                                     else{
                                         if(!$(this).hasClass('checked') && $(this).attr('checked')){
