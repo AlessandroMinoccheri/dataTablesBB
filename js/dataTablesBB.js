@@ -54,6 +54,8 @@
             return this.remove(elements, options);
         },
         comparator: function (item) {
+            console.log(this.sort_order);
+            console.log(this.sort_key);
             if(!isNaN(parseFloat(item.get(this.sort_key))) && isFinite(item.get(this.sort_key))){
                 if(this.sort_order == 'asc'){
                     return parseFloat(item.get(this.sort_key));
@@ -80,6 +82,8 @@
                             title = item.get(this.sort_key).toString().toLowerCase(),
                             inverse_title = '',
                             index;
+
+                        console.log(title);
                          
                         for(var i=0, len=title.length; i<len; i+=1) {
                             index = alphabet.indexOf(title.charAt(i));
@@ -174,7 +178,6 @@
                     }
                 })
             ).then(function() {
-                here.data_table.sortByField(here.order, here.order_by);
                 here.render();
             });
 
