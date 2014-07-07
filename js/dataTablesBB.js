@@ -391,10 +391,6 @@
 
             here.data_table.sortByField(here.order, here.order_by);
 
-            _.each(here.data_table.models, function(t) {
-                console.log(t);
-            });
-
             for (var j = 5; j<=100; j+=5){
                 if(j == here.max){
                     option_max += '<option value="' + j + '" selected="selected">' + j + '</option>';
@@ -507,56 +503,37 @@
             var style_send = '';
             var class_send = '';
 
-            console.log('----');
             $.when(
-                _.each(here.data_table.models, function(t) {
-                    console.log(t);
-                    if(t.attributes.show == '1'){
-                        _.each(here.data_tip.models, function(t2) {
-                            if(t2.attributes.data_id == t.attributes.id){
-                                data_tip_send = t2;
+                $.get('js/template.html', function(t) {
+                    var template = _.template(t);
+                    _.each(here.data_table.models, function(t) {
+                        if(t.attributes.show == '1'){
+                            _.each(here.data_tip.models, function(t2) {
+                                if(t2.attributes.data_id == t.attributes.id){
+                                    data_tip_send = t2;
+                                }
+                            });
+
+                            _.each(here.style_td.models, function(t2) {
+                                if(t2.attributes.data_id == t.attributes.id){
+                                    style_send = t2;
+                                }
+                            });
+
+                            _.each(here.class_table.models, function(t2) {
+                                if(t2.attributes.data_id == t.attributes.id){
+                                    class_send = t2;
+                                }
+                            });
+
+                            count_elements += 1;
+                            actual_el += 1;
+                            if((actual_el < (parseInt(start) + parseInt(max))) && (actual_el >= start)){
+                                $(here.el).find('tbody').append(template({ data: t, class_td: class_send, data_tip: data_tip_send, style_td: style_send }));
                             }
-                        });
-
-                        _.each(here.style_td.models, function(t2) {
-                            if(t2.attributes.data_id == t.attributes.id){
-                                style_send = t2;
-                            }
-                        });
-
-                        _.each(here.class_table.models, function(t2) {
-                            if(t2.attributes.data_id == t.attributes.id){
-                                class_send = t2;
-                            }
-                        });
-
-                        count_elements += 1;
-                        actual_el += 1;
-                        if((actual_el < (parseInt(start) + parseInt(max))) && (actual_el >= start)){
-                            $.get('js/template.html', function (data) {
-                                template = _.template(data, {data: t, class_td: class_send, data_tip: data_tip_send, style_td: style_send});//Option to pass any dynamic values to template
-                                $(here.el).find('tbody').append(template);
-
-                                $(here.el).find('input[type="checkbox"].checkbox').each(function(i){
-                                    if($(this).hasClass('hidden')){
-                                        var test = '';
-                                    }
-                                    else{
-                                        if(!$(this).hasClass('checked') && $(this).attr('checked')){
-                                            $(this).addClass('checked');
-                                        }
-
-                                        $(this).addClass('hidden').before('<span class="' + $(this).attr('class') + '" data-name="' + $(this).attr('name') + '" data-value="' + $(this).attr('value') + '"></span>');
-
-                                        if($(this).hasClass('checked') && ! $(this).attr('checked')){
-                                            $(this).attr('checked', true);
-                                        }
-                                    }
-                                });
-                            }, 'html');
                         }
-                    }
-                })
+                    });
+                }, 'html')
             ).then(function() {
                 $.when(
                     _.each(here.info.models, function(t) {
