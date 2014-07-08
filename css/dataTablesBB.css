@@ -522,3 +522,15 @@ span.checkbox:hover {
 span.checkbox.checked {
   background: #ffffff url('../img/checkmark-small.png') no-repeat center center;
 }
+
+.info{
+  width: 22px;
+  height: 22px;
+  display: inline-block;
+  cursor: pointer;
+  background: url('../img/info.png') no-repeat center center;
+}
+
+.align-center{
+  text-align: center;
+}
