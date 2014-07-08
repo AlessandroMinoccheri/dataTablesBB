@@ -1,4 +1,4 @@
-.hidden {
+.data-table-bb .hidden {
   display: none;
 }
 .data-table-bb {
@@ -446,61 +446,61 @@ table.data-table-bb.external-elements thead > tr:before {
   background: #f2f2f2;
   content: '';
 }
-.container-arrow span {
+.data-table-bb .container-arrow span {
   cursor: pointer;
 }
-.data-table-bb tr.selected td,
-.simple-table tr.selected td {
+.data-table-bb .data-table-bb tr.selected td,
+.data-table-bb .simple-table tr.selected td {
   background: #feffc2;
 }
-.white-block + .data-table-bb {
+.data-table-bb .white-block + .data-table-bb {
   margin-top: -20px;
 }
 
-.row-drop > td > div > table tr td:first-child .rtl-label {
+.data-table-bb .row-drop > td > div > table tr td:first-child .rtl-label {
   width: 140px;
 }
-.row-drop {
+.data-table-bb .row-drop {
   display: none;
 }
-.row-drop > td {
+.data-table-bb .row-drop > td {
   background: #dbeef3;
   vertical-align: top !important;
   padding: 0 !important;
   border: 0;
 }
-.row-drop > td > div {
+.data-table-bb .row-drop > td > div {
   max-height: 300px;
   overflow-x: hidden;
   overflow-y: scroll;
 }
-.row-drop > td > div > table {
+.data-table-bb .row-drop > td > div > table {
   width: 100%;
   border: 0;
   border-spacing: 0;
 }
-.row-drop > td > div > table tr td:first-child .rtl-label {
+.data-table-bb .row-drop > td > div > table tr td:first-child .rtl-label {
   width: 90px;
 }
-.row-drop > td > div > table tr td:nth-child(2) .rtl-label {
+.data-table-bb .row-drop > td > div > table tr td:nth-child(2) .rtl-label {
   width: 130px;
 }
-.row-drop > td > div > table tr td:last-child {
+.data-table-bb .row-drop > td > div > table tr td:last-child {
   border: 0;
 }
-.row-drop > td > div > table td {
+.data-table-bb .row-drop > td > div > table td {
   vertical-align: top;
   border: 0;
   padding: 10px 0 20px;
   border-right: 1px solid #d1d1d1;
 }
-.row-drop > td > div > table td p {
+.data-table-bb .row-drop > td > div > table td p {
   font-size: 12px;
   color: #555;
 }
 
-.checkbox + .label,
-.radio + .label {
+.data-table-bb .checkbox + .label,
+.data-table-bb .radio + .label {
   position: relative;
   top: -2px;
   left: 3px;
@@ -508,7 +508,7 @@ table.data-table-bb.external-elements thead > tr:before {
   margin-right: 10px;
 }
 
-span.checkbox {
+.data-table-bb span.checkbox {
   display: inline-block;
   background: #fff;
   border: 1px solid #737373;
@@ -516,14 +516,14 @@ span.checkbox {
   width: 13px;
   height: 13px;
 }
-span.checkbox:hover {
+.data-table-bb span.checkbox:hover {
   background: #f2f2f2;
 }
-span.checkbox.checked {
+.data-table-bb span.checkbox.checked {
   background: #ffffff url('../img/checkmark-small.png') no-repeat center center;
 }
 
-.info{
+.data-table-bb .info{
   width: 22px;
   height: 22px;
   display: inline-block;
@@ -531,6 +531,6 @@ span.checkbox.checked {
   background: url('../img/info.png') no-repeat center center;
 }
 
-.align-center{
+.data-table-bb .align-center{
   text-align: center;
 }
