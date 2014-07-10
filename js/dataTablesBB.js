@@ -131,6 +131,13 @@
                 this.multiple_checkbox = true;
             }
 
+            if(this.options.element_visible !== undefined){
+                this.max = this.options.element_visible;
+            }
+            else{
+                this.max = 5;
+            }
+
             var count = 0;
             $.when(
                 $(here.el).find('tr').each(function(){
