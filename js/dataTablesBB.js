@@ -116,11 +116,8 @@
             this.data_tip = new DataTipCollection();
             this.style_td = new StyleCollection();
             this.info = new InfoCollection();
-            this.order = '2';
-            this.order_by = 'asc';
             this.filterColumn = [];
             this.actual_page = 1;
-            this.max = 5;
             this.start = 0;
             this.max_page = 0;
 
@@ -136,6 +133,20 @@
             }
             else{
                 this.max = 5;
+            }
+
+            if(this.options.order !== undefined){
+                this.order = this.options.order;
+            }
+            else{
+                this.order = 2;
+            }
+
+            if(this.options.order_by !== undefined){
+                this.order_by = this.options.order_by;
+            }
+            else{
+                this.order_by = 'asc';
             }
 
             var count = 0;
