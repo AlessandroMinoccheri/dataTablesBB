@@ -108,7 +108,8 @@
     });
 
     var DataTableView = Backbone.View.extend({ 
-        initialize: function(){
+        initialize: function(options){
+            this.options = options || {};
             var here = this;
             this.data_table = new DataCollection();
             this.class_table = new ClassCollection();
@@ -122,6 +123,13 @@
             this.max = 5;
             this.start = 0;
             this.max_page = 0;
+
+            if(this.options.multiple_checkbox !== undefined){
+                this.multiple_checkbox = this.options.multiple_checkbox;
+            }
+            else{
+                this.multiple_checkbox = true;
+            }
 
             var count = 0;
             $.when(
@@ -327,6 +335,13 @@
             });
 
             $(here.el).on('click', '.checkbox', function(){
+                if(here.multiple_checkbox === false){
+                    $(here.el).find('.checkbox').each(function(index){
+                        $(this).removeClass('checked');
+                        $(this).closest('td').find('input').removeAttr('checked');
+                        $(this).closest('tr').removeClass('selected');
+                    }); 
+                }
                 if($(this).hasClass('checked')){
                     $(this).removeClass('checked');
                     $(this).closest('td').find('input').removeAttr('checked');
