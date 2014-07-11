@@ -537,7 +537,7 @@
             var class_send = '';
 
             $.when(
-                $.get('js/template.html', function(t) {
+                $.get('js/dataTablesBB/template.html', function(t) {
                     var template = _.template(t);
                     _.each(here.data_table.models, function(t) {
                         if(t.attributes.show == '1'){
