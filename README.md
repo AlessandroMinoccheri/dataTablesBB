@@ -43,7 +43,7 @@ To initialize app you need to pass the reference to your table, for example if y
 
 Automatically the app parse data and redraw your table
 
-#Using
+#Usage
 
 To be secure to use this app well your table should be something like this:
 
@@ -64,23 +64,45 @@ To be secure to use this app well your table should be something like this:
         </thead>
         <tbody>
             <tr>
-                <td class="align-center" style="width:34px">
+                <td>
                     <input type="checkbox" class="checkbox" name="check1" value="1" />
                 </td>
-                <td class="align-center" style="width:65px">Garry</td>
-                <td class="align-center" style="width:65px">Trout</td>
+                <td>Garry</td>
+                <td>Trout</td>
                 <td>04/03/1970</td>
                 <td>CT</td>
                 <td>Head</td>
                 <td>05/21/2010</td>
                 <td>####</td>
                 <td>####</td>
-                <td style="width:46px">Example</td>
-                <td class="align-center">
+                <td>Example</td>
+                <td>
                     <span class="icon-small info"></span>
                 </td>
             </tr>
             <!-- other row -->
         </tbody>
     </table>
+
+
+First thing you should consider is: assign an id and the class ```data-table-bb``` to your table.
+Inside thead you can create many columns with th and assign twho type of class:
+- ```to-order```
+- ```to-filter```
+
+Class ```to-order``` means that this column can be sorted
+Class ```to-filter``` means that this column can be filtered
+
+#Advanced elements
+Inside tbody you can insert your row with your data without specify something basically.
+If you want to use a checkbox statement to select the entire row or more rows you can create an element like this:
+
 ```
+<td>
+    <input type="checkbox" class="checkbox" name="check1" value="1" />
+</td>
+```
+
+It's important to use this syntax about type of the input and the class.
+If you use this element automatically the app convert this checkbox into a graphic cehckbox that when is checked all the line will be selected, or more rows if you check more.
+
