@@ -83,7 +83,7 @@ To be secure to use this app well your table should be something like this:
             <!-- other row -->
         </tbody>
     </table>
-
+```
 
 First thing you should consider is: assign an id and the class ```data-table-bb``` to your table.
 Inside thead you can create many columns with th and assign twho type of class:
