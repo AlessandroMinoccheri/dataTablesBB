@@ -93,6 +93,25 @@ Inside thead you can create many columns with th and assign twho type of class:
 Class ```to-order``` means that this column can be sorted
 Class ```to-filter``` means that this column can be filtered
 
+#Options
+When you load the app you can set some options for example this initalize:
+
+```
+var data = new DataTableView({ 
+    el: $("#data-tbl"),
+    multiple_checkbox: true,
+    element_visible: 15,
+    order: 3,
+    order_by: 'desc'
+});
+```
+
+- ```el``` is the table that you want to convert into an interactive table with this app
+- ```multiple_checkbox``` when you use the functionality of checkbox (explained in the next paragraph) you can set that users can select only one row(value = false) or more rows(value = true).
+- ```element_visible``` is the number of elements visible when ou load the page. Value that you can insert are multiple of 5: 5, 10, 15, 20, 25, 30, 35, 40, 45...
+- ```order``` the order base of your table, the value is the index of the column that you want to sorted when the page is loaded
+- ```order_by``` the order type base of your table, the value can be asc or desc. Is the type of order of the column that you want to sorted by when the page is loaded
+
 #Advanced elements
 Inside ```tbody``` you can insert your row with your data without specify something basically.
 If you want to use a checkbox statement to select the entire row or more rows you can create an element like this:
