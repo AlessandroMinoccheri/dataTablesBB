@@ -53,32 +53,11 @@ To be secure to use this app well your table should be something like this:
             <th>Select</th>
             <th class="to-order to-filter"><span>First Name</span></th>
             <th class="to-order to-filter"><span>Last Name</span></th>
-            <th class="to-order to-filter"><span>DOB</span></th>
-            <th class="to-order to-filter"><span>Modality</span></th>
-            <th class="to-order to-filter"><span>Body<br/> Part</span></th>
-            <th class="to-order to-filter"><span>Study Date</span></th>
-            <th class="to-order to-filter"><span>Image #</span></th>
-            <th class="to-order to-filter"><span>Series #</span></th>
-            <th class="to-order to-filter"><span>Source<br/> Hospital</span></th>
-            <th>More<br/> Info</th>
         </thead>
         <tbody>
             <tr>
-                <td>
-                    <input type="checkbox" class="checkbox" name="check1" value="1" />
-                </td>
                 <td>Garry</td>
                 <td>Trout</td>
-                <td>04/03/1970</td>
-                <td>CT</td>
-                <td>Head</td>
-                <td>05/21/2010</td>
-                <td>####</td>
-                <td>####</td>
-                <td>Example</td>
-                <td>
-                    <span class="icon-small info"></span>
-                </td>
             </tr>
             <!-- other row -->
         </tbody>
