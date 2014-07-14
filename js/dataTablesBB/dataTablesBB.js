@@ -455,10 +455,16 @@
             }
             
             if($(here.el).parent().find('#table-request_filter').length <= 0){
-                $(here.el).before('<div id="table-request_filter" class="data-table-wd_filter"><label>Filter List:<input class="text search-text" type="search" aria-controls="table-request"></label></div><div id="table-request_length" class="data-table-wd_length"><label>Show<select class="show-element" name="table-request_length" aria-controls="table-request">' + option_max + '</select>entries</label></div><div class="clear"></div>');
+                if(here.option_filter == true){
+                    $(here.el).before('<div id="table-request_filter" class="data-table-wd_filter"><label>Filter List:<input class="text search-text" type="search" aria-controls="table-request"></label></div>');
+                }
+
+                if(here.option_paginate == true){
+                    $(here.el).before('<div id="table-request_length" class="data-table-wd_length"><label>Show<select class="show-element" name="table-request_length" aria-controls="table-request">' + option_max + '</select>entries</label></div><div class="clear"></div>');
+                }
             }
 
-            if($(here.el).parent().find('.table-request_info').length <= 0){
+            if(($(here.el).parent().find('.table-request_info').length <= 0) && (here.option_paginate == true)){
                 $(here.el).after('<div class="data-table-wd_info table-request_info" id="table-request_info" role="status" aria-live="polite">Showing 1 to 4 of 4 entries</div><div class="data-table-wd_paginate paging_simple_numbers" id="table-request_paginate"><a class="paginate_button previous table-request_previous" aria-controls="table-request" data-dt-idx="0" tabindex="0" id="table-request_previous">Previous</a><a class="paginate_button next table-request_next" aria-controls="table-request" data-dt-idx="2" tabindex="0" id="table-request_next">Next</a></div>');
             }
 
@@ -483,7 +489,7 @@
                         }
                     });
 
-                    if($(this).find('.order-by').length <= 0){
+                    if(($(this).find('.order-by').length <= 0) && (here.option_sort == true)){
                         $(this).find('td').each(function(index2){
                             if($(this).hasClass('to-order')){
                                 var margin = -10;
@@ -623,7 +629,9 @@
                         index_end_page = count_elements;
                     }
 
-                    $(here.el).parent().find('.table-request_info').html('Showing ' + index_start + ' to ' + index_end_page + ' of ' + count_elements + ' entries');
+                    if(here.option_paginate == true){
+                        $(here.el).parent().find('.table-request_info').html('Showing ' + index_start + ' to ' + index_end_page + ' of ' + count_elements + ' entries');
+                    }
                 
                     $(document).find('input[type="checkbox"].checkbox').each(function(){
                         if(!$(this).hasClass('checked') && $(this).attr('checked')){
