@@ -121,6 +121,27 @@
             this.start = 0;
             this.max_page = 0;
 
+            if(this.options.option_filter !== undefined){
+                this.option_filter = this.options.option_filter;
+            }
+            else{
+                this.option_filter = true;
+            }
+
+            if(this.options.option_sort !== undefined){
+                this.option_sort = this.options.option_sort;
+            }
+            else{
+                this.option_sort = true;
+            }
+
+            if(this.options.option_paginate !== undefined){
+                this.option_paginate = this.options.option_paginate;
+            }
+            else{
+                this.option_paginate = true;
+            }
+
             if(this.options.multiple_checkbox !== undefined){
                 this.multiple_checkbox = this.options.multiple_checkbox;
             }
