@@ -311,7 +311,7 @@
                         var to_filter = 0;
                         _.each(data.attributes, function(d, index_d) {
                             _.each(here.filterColumn, function(filter) {
-                                if (parseInt(filter) === index_d){
+                                if (filter.toString() === index_d){
                                     to_filter = 1;
                                 }
                             });
