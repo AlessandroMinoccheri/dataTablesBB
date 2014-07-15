@@ -31,11 +31,7 @@ To initialize app you need to pass the reference to your table, for example if y
 <script>
    $(document).ready(function(){
        var data = new DataTableView({ 
-           el: $("#data-tbl"),
-           multiple_checkbox: true,
-           element_visible: 15,
-           order: 3,
-           order_by: 'desc'
+            el: $("#data-tbl")
        });
    });
 </script>
@@ -81,15 +77,21 @@ var data = new DataTableView({
     multiple_checkbox: true,
     element_visible: 15,
     order: 3,
-    order_by: 'desc'
+    order_by: 'desc',
+    option_filter: true,
+    option_sort: true,
+    option_paginate: true
 });
 ```
 
 - ```el``` is the table that you want to convert into an interactive table with this app
-- ```multiple_checkbox``` when you use the functionality of checkbox (explained in the next paragraph) you can set that users can select only one row(value = false) or more rows(value = true).
-- ```element_visible``` is the number of elements visible when ou load the page. Value that you can insert are multiple of 5: 5, 10, 15, 20, 25, 30, 35, 40, 45...
-- ```order``` the order base of your table, the value is the index of the column that you want to sorted when the page is loaded
-- ```order_by``` the order type base of your table, the value can be asc or desc. Is the type of order of the column that you want to sorted by when the page is loaded
+- ```multiple_checkbox``` when you use the functionality of checkbox (explained in the next paragraph) you can set that users can select only one row(value = false) or more rows(value = true). Default value is: ```true```.
+- ```element_visible``` is the number of elements visible when ou load the page. Value that you can insert are multiple of 5: 5, 10, 15, 20, 25, 30, 35, 40, 45... Default value is: ```5```.
+- ```order``` the order base of your table, the value is the index of the column that you want to sorted when the page is loaded. Default value is: ```2```.
+- ```order_by``` the order type base of your table, the value can be asc or desc. Is the type of order of the column that you want to sorted by when the page is loaded. Default value is: ```asc```.
+- ```option_filter``` if is set to true filter function is actived. Default value is: ```true```.
+- ```option_sort``` if is set to true sorting function is actived. Default value is: ```true```.
+- ```option_paginate``` if is set to true pagination function is actived. Default value is: ```true```.
 
 #Advanced elements
 Inside ```tbody``` you can insert your row with your data without specify something basically.
