@@ -65,11 +65,12 @@ Inside thead you can create many columns with th and assign twho type of class:
 - ```to-order```
 - ```to-filter```
 
-Class ```to-order``` means that this column can be sorted
-Class ```to-filter``` means that this column can be filtered
+Class ```to-order``` means that this column can be sorted.
+
+Class ```to-filter``` means that this column can be filtered.
 
 #Options
-When you load the app you can set some options for example this initalize:
+When you load app you can set some options for example this initalize:
 
 ```
 var data = new DataTableView({ 
@@ -172,6 +173,7 @@ Example of usage:
 ```
 
 In this case all ```row-drop ``` is hidden when you load the page but whn you click on icon info, this line will be appear.
+
 It can be useful to see more data only when the user want to see it.
 
 ## License
