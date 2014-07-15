@@ -55,19 +55,19 @@
         },
         comparator: function (item) {
             if(!isNaN(parseFloat(item.get(this.sort_key))) && isFinite(item.get(this.sort_key))){
-                if(this.sort_order == 'asc'){
+                if(this.sort_order.toString() === 'asc'){
                     return parseFloat(item.get(this.sort_key));
                 }
                 else{
                     return -parseFloat(item.get(this.sort_key));
                 }
             }
-            if(typeof item.get(this.sort_key) == 'string') {
+            if(typeof item.get(this.sort_key).toString() === 'string') {
                 var check = item.get(this.sort_key).split('/');
                 var check2 = item.get(this.sort_key).split('-');
-                if((check.length == '3') || (check2.length == '3')){
+                if((check.length.toString() === '3') || (check2.length.toString() === '3')){
                     var date = new Date(item.get(this.sort_key));
-                    if(this.sort_order == 'asc'){
+                    if(this.sort_order.toString() === 'asc'){
                         return date.getTime();
                     }
                     else{
@@ -75,7 +75,7 @@
                     }
                 }
                 else{
-                    if(this.sort_order == 'desc'){
+                    if(this.sort_order.toString() === 'desc'){
                         var alphabet = '<>-_0123456789abcdefghijklmnopqrstuvwxyz',
                             title = item.get(this.sort_key).toString().toLowerCase(),
                             inverse_title = '',
@@ -84,7 +84,7 @@
                         for(var i=0, len=title.length; i<len; i+=1) {
                             index = alphabet.indexOf(title.charAt(i));
                          
-                            if(index == -1) {
+                            if(parseInt(index) === -1) {
                                 inverse_title += title.charAt(i);
                                 continue;
                             }
@@ -241,7 +241,7 @@
 
                 $(document).find(here.el).find('.order-arrow').remove();
                 $(document).find(here.el).find('tr').each(function(index){
-                    if(index == 1){
+                    if(parseInt(index) === 1){
                         if($(this).find('.order-by').length <= 0){
                             $(this).find('td').each(function(index2){
                                 if($(this).hasClass('to-order')){
@@ -255,12 +255,12 @@
                                         margin = 0;
                                     }
 
-                                    if((here.order == index2) && (here.order_by == 'asc')){
+                                    if((parseInt(here.order) === index2) && (here.order_by.toString() === 'asc')){
                                         asc_img = 'img/sort_asc.png';
                                         opacity_desc = 0;
                                     }
 
-                                    if((here.order == index2) && (here.order_by == 'desc')){
+                                    if((parseInt(here.order) === index2) && (here.order_by.toString() === 'desc')){
                                         desc_img = 'img/sort_desc.png';
                                         opacity_asc = 0;
                                     }
@@ -281,12 +281,12 @@
                                         margin = 0;
                                     }
 
-                                    if((here.order == index2) && (here.order_by == 'asc')){
+                                    if((parseInt(here.order) === index2) && (here.order_by.toString() === 'asc')){
                                         asc_img = 'img/sort_asc.png';
                                         opacity_desc = 0;
                                     }
 
-                                    if((here.order == index2) && (here.order_by == 'desc')){
+                                    if((parseInt(here.order) === index2) && (here.order_by.toString() === 'desc')){
                                         desc_img = 'img/sort_desc.png';
                                         opacity_asc = 0;
                                     }
@@ -311,12 +311,12 @@
                         var to_filter = 0;
                         _.each(data.attributes, function(d, index_d) {
                             _.each(here.filterColumn, function(filter) {
-                                if (filter == index_d){
+                                if (parseInt(filter) === index_d){
                                     to_filter = 1;
                                 }
                             });
 
-                            if(to_filter == 1){
+                            if(parseInt(to_filter) === 1){
                                 if((index_t !== 'id') && (index_t !== 'show')){
                                     var text = d.toString().toLowerCase();
                                     
@@ -334,7 +334,7 @@
 
                             if(text.indexOf(searched_text.toLowerCase()) >= 0){
                                 _.each(here.data_table.models, function(data2) {
-                                    if(data2.attributes.id == data.attributes.data_id){
+                                    if(parseInt(data2.attributes.id) === parseInt(data.attributes.data_id)){
                                         data2.set('show', '1');
                                     }
                                 });
@@ -375,7 +375,7 @@
 
             $(here.el).on('click', '.checkbox', function(){
                 if(here.multiple_checkbox === false){
-                    $(here.el).find('.checkbox').each(function(index){
+                    $(here.el).find('.checkbox').each(function(){
                         $(this).removeClass('checked');
                         $(this).closest('td').find('input').removeAttr('checked');
                         $(this).closest('tr').removeClass('selected');
@@ -421,7 +421,7 @@
             $(here.el).on('click', '.remove-el', function(){
                 var id = $(this).closest('tr').attr('id').substr(4);
                 _.each(here.data_table.models, function(data) {
-                    if(data.attributes.id == id){
+                    if(parseInt(data.attributes.id) === id){
                         here.data_table.removeConfiguration(data);
                         here.emptyPagination();
                         here.render();
@@ -446,7 +446,7 @@
             here.data_table.sortByField(here.order, here.order_by);
 
             for (var j = 5; j<=100; j+=5){
-                if(j == here.max){
+                if(parseInt(j) === parseInt(here.max)){
                     option_max += '<option value="' + j + '" selected="selected">' + j + '</option>';
                 }
                 else{
@@ -455,16 +455,16 @@
             }
             
             if($(here.el).parent().find('#table-request_filter').length <= 0){
-                if(here.option_filter == true){
+                if(here.option_filter === true){
                     $(here.el).before('<div id="table-request_filter" class="data-table-wd_filter"><label>Filter List:<input class="text search-text" type="search" aria-controls="table-request"></label></div>');
                 }
 
-                if(here.option_paginate == true){
+                if(here.option_paginate === true){
                     $(here.el).before('<div id="table-request_length" class="data-table-wd_length"><label>Show<select class="show-element" name="table-request_length" aria-controls="table-request">' + option_max + '</select>entries</label></div><div class="clear"></div>');
                 }
             }
 
-            if(($(here.el).parent().find('.table-request_info').length <= 0) && (here.option_paginate == true)){
+            if(($(here.el).parent().find('.table-request_info').length <= 0) && (here.option_paginate === true)){
                 $(here.el).after('<div class="data-table-wd_info table-request_info" id="table-request_info" role="status" aria-live="polite">Showing 1 to 4 of 4 entries</div><div class="data-table-wd_paginate paging_simple_numbers" id="table-request_paginate"><a class="paginate_button previous table-request_previous" aria-controls="table-request" data-dt-idx="0" tabindex="0" id="table-request_previous">Previous</a><a class="paginate_button next table-request_next" aria-controls="table-request" data-dt-idx="2" tabindex="0" id="table-request_next">Next</a></div>');
             }
 
@@ -489,7 +489,7 @@
                         }
                     });
 
-                    if(($(this).find('.order-by').length <= 0) && (here.option_sort == true)){
+                    if(($(this).find('.order-by').length <= 0) && (here.option_sort === true)){
                         $(this).find('td').each(function(index2){
                             if($(this).hasClass('to-order')){
                                 var margin = -10;
@@ -502,12 +502,12 @@
                                     margin = 0;
                                 }
 
-                                if((here.order == index2) && (here.order_by == 'asc')){
+                                if((parseInt(here.order) === index2) && (here.order_by.toString() === 'asc')){
                                     asc_img = 'img/sort_asc.png';
                                     opacity_desc = 0;
                                 }
 
-                                if((here.order == index2) && (here.order_by == 'desc')){
+                                if((parseInt(here.order) === index2) && (here.order_by.toString() === 'desc')){
                                     desc_img = 'img/sort_desc.png';
                                     opacity_asc = 0;
                                 }
@@ -533,12 +533,12 @@
                                     margin = 0;
                                 }
 
-                                if((here.order == index2) && (here.order_by == 'asc')){
+                                if((parseInt(here.order) === index2) && (here.order_by.toString() === 'asc')){
                                     asc_img = 'img/sort_asc.png';
                                     opacity_desc = 0;
                                 }
 
-                                if((here.order == index2) && (here.order_by == 'desc')){
+                                if((parseInt(here.order) === index2) && (here.order_by.toString() === 'desc')){
                                     desc_img = 'img/sort_desc.png';
                                     opacity_asc = 0;
                                 }
@@ -567,21 +567,21 @@
                 $.get('js/dataTablesBB/template.html', function(t) {
                     var template = _.template(t);
                     _.each(here.data_table.models, function(t) {
-                        if(t.attributes.show == '1'){
+                        if(t.attributes.show.toString() === '1'){
                             _.each(here.data_tip.models, function(t2) {
-                                if(t2.attributes.data_id == t.attributes.id){
+                                if(parseInt(t2.attributes.data_id) === parseInt(t.attributes.id)){
                                     data_tip_send = t2;
                                 }
                             });
 
                             _.each(here.style_td.models, function(t2) {
-                                if(t2.attributes.data_id == t.attributes.id){
+                                if(parseInt(t2.attributes.data_id) === parseInt(t.attributes.id)){
                                     style_send = t2;
                                 }
                             });
 
                             _.each(here.class_table.models, function(t2) {
-                                if(t2.attributes.data_id == t.attributes.id){
+                                if(parseInt(t2.attributes.data_id) === parseInt(t.attributes.id)){
                                     class_send = t2;
                                 }
                             });
@@ -604,7 +604,7 @@
                         var number_pages = Math.ceil(parseInt(count_elements) / parseInt(here.max));
                         here.max_page = number_pages;
                         for (var i = number_pages; i > 0; i-=1){
-                            if(here.actual_page == i){
+                            if(parseInt(here.actual_page) === i){
                                 $(here.el).parent().find('.table-request_previous').after('<span><a class="paginate_button current" aria-controls="table-request" data-dt-idx="' + i + '" tabindex="0">' + i + '</a></span>');
                             }
                             else{
@@ -616,7 +616,7 @@
                         $(here.el).parent().find('.paginate_button').each(function(index){
                             $(this).removeClass('current');
 
-                            if(here.actual_page == index){
+                            if(parseInt(here.actual_page) === index){
                                 $(this).addClass('current');
                             }
                         });
@@ -629,7 +629,7 @@
                         index_end_page = count_elements;
                     }
 
-                    if(here.option_paginate == true){
+                    if(here.option_paginate === true){
                         $(here.el).parent().find('.table-request_info').html('Showing ' + index_start + ' to ' + index_end_page + ' of ' + count_elements + ' entries');
                     }
                 
