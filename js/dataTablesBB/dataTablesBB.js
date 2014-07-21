@@ -528,7 +528,6 @@ var DataTableView = Backbone.View.extend({
                             var asc_img = 'img/sort_asc_disabled.png';
                             var desc_img = 'img/sort_desc_disabled.png';
 
-
                             if(($(this).html().indexOf('<br />') >= 0) || ($(this).html().indexOf('<br>') >= 0) || ($(this).html().indexOf('<br/>') >= 0)){
                                 margin = 0;
                             }
@@ -640,7 +639,7 @@ var DataTableView = Backbone.View.extend({
 
                     $(this).addClass('hidden').before('<span class="' + $(this).attr('class') + '" data-name="' + $(this).attr('name') + '" data-value="' + $(this).attr('value') + '"></span>');
 
-                    if($(this).hasClass('checked') && ! $(this).attr('checked')){
+                    if($(this).hasClass('checked') && (! $(this).attr('checked'))){
                         $(this).attr('checked', true);
                     }
                 });
